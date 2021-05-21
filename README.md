@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+# POORDASH.COM
+### Race to the Bottom!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+PoorDash is a delivery and fitness app in one!
 
-## Available Scripts
+PoorDash is the first app that pays delivery people by the calorie! That means if you have to ride up a hill or walk up several flights of stairs, you get paid extra! It's a great way to get paid to be fit!  
 
-In the project directory, you can run:
+Plus, it's the only app that incentivizes delivery people to use cars.
 
-### `yarn start`
+PLUS, if you want to get in on the calories for calories program, you can cash in your Sweat Bonuses for free food! 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Sweat Bonuses
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+You earn a Sweat Bonus for every calorie you ride over the baseline.
 
-### `yarn test`
+## Wages
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Some people ask, how can you pay people less than minimum wage? Well, it's really no different from the restaurant industry. Many waiters have a base pay that's less than minimum wage, but they take home more than higher-paid workers because they receive tips. Think of the sweat bonus you earn using PoorDash the same way you would think about a tip. It's our way of acknowledging your hard work!
 
-### `yarn build`
+## Benefits
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+At PoorDash, we think physical fitness is the best health plan of all, and with all the exercise you'll be getting, you won't need health care, so we don't give it to you.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Caveats
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* Because we must standardize the amount of effort and prevent abuse, we require every rider purchase an approved bike by PoorDash that meets the weight, safety and feature requirements. 
+* PoorDash riders must keep a tracker affixed to their bike at all times while riding. Any tampering with the tracker will result in a warning, and then a ban from the platform.
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
