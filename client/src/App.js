@@ -1,14 +1,8 @@
-import logo from './PoorDash-02.svg';
-import './App.css';
-
+import React from 'react';
+import './App.scss';
 import Welcome from './components/Welcome';
+import WTF from './components/WTF';
 
-function App() {
-    return (
-        <div className="App">
-            <Welcome />
-        </div>
-    );
-}
+const App = ({ children }) => <div className="App">{children}</div>
 
 export default App;

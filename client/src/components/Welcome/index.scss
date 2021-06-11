@@ -34,21 +34,49 @@ $pdRed: #f61000;
         color: $pdRed;
         border-color: $pdRed;
     }
+    .modal-header {
+        background-color: $pdRed;
+        h2 {
+            text-align: center;
+            width: 100%;
+            color: white;
+        }
+    }
+
     .modal-footer {
         display: block;
+        Button {
+            font-size: 24px;
+            border-radius: 30px;
+            padding: 10px 30px;
+        }
         .dd {
             display: flex;
             flex-flow: row nowrap;
             justify-content: space-around;
             Button {
-                border-color: white;
+                border-color: $pdRed;
             }
         }
         p {
             text-align: center;
+            margin-bottom: 25px;
+            margin-top: 0;
+            font-size: 75px;
         }
         .b {
             text-align: center;
+            Button {
+                background-color: $pdRed;
+                border-color: white;
+                color: white;
+            }
+        }
+        .wtf {
+            text-align: right;
+            color: $pdRed;
+            font-size: 9px;
+            font-family: Helvetica Neue, Arial, sans-serif;
         }
     }
 }

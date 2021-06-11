@@ -6,7 +6,10 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import reduxThunk from 'redux-thunk';
 import 'bootstrap/dist/css/bootstrap.min.css'; // TODO: figure out bootstrap
 
-import styles from './index.css';
+import Welcome from './components/Welcome';
+import WTF from './components/WTF';
+
+import styles from './index.scss';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -28,7 +31,8 @@ ReactDOM.render(
                 {/*<Route exact path='/signup' component={SignUp} />*/}
                 {/*<Route exact path='/signin' component={SignIn} />*/}
                 {/*<Route exact path='/signout' component={SignOut} />*/}
-                {/*<Route exact path='/' component={Welcome} />*/}
+                <Route exact path='/' component={Welcome} />
+                <Route exact pat='/wtf' component={WTF} />
                 {/*<Route exact path='/' component={PartSearch} />*/}
                 {/*<Route exact path='/inventory' component={InventoryView} />*/}
                 {/*<Route exact path='/dashboard' component={Dashboard} />*/}
