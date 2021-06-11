@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import reduxThunk from 'redux-thunk';
-// import 'bootstrap/dist/css/bootstrap.min.css'; TODO: figure out bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css'; // TODO: figure out bootstrap
 
 import styles from './index.css';
 

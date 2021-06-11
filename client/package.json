@@ -14,7 +14,9 @@
         "react-scripts": "latest",
         "redux": "^4.1.0",
         "web-vitals": "^1.0.1",
-        "node-sass": "latest"
+        "node-sass": "latest",
+        "react-bootstrap": "latest",
+        "bootstrap": "~4"
     },
     "scripts": {
         "start": "react-scripts start",
