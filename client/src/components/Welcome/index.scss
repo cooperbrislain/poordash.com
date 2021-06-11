@@ -8,7 +8,7 @@ $pdRed: #f61000;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: #f61000;
+    color: $pdRed;
     font-size: var(--base-font-size);
     font-family: Futura, Helvetica Neue, Arial, sans-serif;
     font-variant: all-small-caps;
@@ -16,6 +16,39 @@ $pdRed: #f61000;
         &:visited {
             color: $pdRed;
             text-decoration: none;
+        }
+    }
+
+    Button {
+        margin-top: 50px;
+        background-color: white;
+        color: $pdRed;
+        border-color: $pdRed;
+        border-width: 3px;
+    }
+}
+
+.modal.choice {
+    Button {
+        background-color: white;
+        color: $pdRed;
+        border-color: $pdRed;
+    }
+    .modal-footer {
+        display: block;
+        .dd {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-around;
+            Button {
+                border-color: white;
+            }
+        }
+        p {
+            text-align: center;
+        }
+        .b {
+            text-align: center;
         }
     }
 }

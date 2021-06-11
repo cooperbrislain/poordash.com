@@ -15,14 +15,20 @@ const Welcome = () => {
         <div className="welcome">
             <img src={logo} className="App-logo" alt="logo" />
             <h1>PoorDash</h1>
-            <Button variant="primary" onClick={handleShow}>Race To The Bottom</Button>
 
+            <Button className="rttb" variant="primary" onClick={handleShow}>Race To The Bottom</Button>
 
-            <Modal show={show}>
+            <Modal className="choice" show={show}>
                 <Modal.Header>Hungry?</Modal.Header>
                 <Modal.Footer>
-                    <Button>Dine</Button>
-                    <Button>Dash</Button>
+                    <div class="dd">
+                        <Button className="dine">Dine</Button>
+                        <Button className="dash">Dash</Button>
+                    </div>
+                    <p>...</p>
+                    <div class="b">
+                        <Button className="both">Both?</Button>
+                    </div>
                 </Modal.Footer>
             </Modal>
         </div>
