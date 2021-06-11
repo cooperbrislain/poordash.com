@@ -1,7 +1,7 @@
 import React from 'react';
 import { compose } from "redux";
 import { connect } from "react-redux";
-import styles from './index.css';
+import styles from './index.scss';
 import logo from "../../PoorDash-02.svg";
 
 const welcomeStyle = styles.welcome;
