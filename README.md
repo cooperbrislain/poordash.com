@@ -4,7 +4,7 @@
 
 A satirical landing page for a dystopian gig-economy app — *Dope Wars* if the drugs were delivery gigs and the loan shark was a venture-backed startup with a five-star rating.
 
-Live at [poordash.com](https://poordash.com) (someone else's, not mine — hence the project).
+Live at [poordash.com](https://poordash.com).
 
 ---
 
