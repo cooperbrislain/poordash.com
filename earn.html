@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Start Earning — PoorDash Contractor Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    [hidden] { display: none !important; }
+
+    :root {
+      --red:      #E8321A;
+      --red-dark: #C22A14;
+      --red-bg:   #FFF3F0;
+      --gold:     #C9A227;
+      --gold-bg:  #FBF6E9;
+      --text:     #1A1A1A;
+      --mid:      #555555;
+      --light:    #888888;
+      --rule:     #E8E8E8;
+      --bg:       #FFFFFF;
+      --bg-gray:  #F7F7F7;
+      --terminal: #0d0d0d;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text);
+      background: var(--bg-gray);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    .chit-glyph {
+      display: inline-block;
+      width: 0.55em;
+      height: 0.85em;
+      vertical-align: -0.08em;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+    }
+
+    /* ─── Nav ─── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: white;
+      border-bottom: 1px solid var(--rule);
+      padding: 0 2rem;
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--red);
+      flex-shrink: 0;
+    }
+    .logo svg { width: 28px; height: 28px; }
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      flex: 1;
+    }
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--mid);
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ─── Onboarding ─── */
+    #screen-onboard {
+      max-width: 640px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+    .onboard-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.6rem;
+    }
+    .onboard-card {
+      background: white;
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 1.25rem;
+    }
+    .onboard-card h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 0.4rem;
+    }
+    .onboard-card .sub {
+      color: var(--mid);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+    .equipment-table {
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+    }
+    .equipment-table-header {
+      background: var(--bg-gray);
+      padding: 0.65rem 1rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mid);
+      display: flex;
+      justify-content: space-between;
+    }
+    .equipment-row {
+      padding: 0.75rem 1rem;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.875rem;
+    }
+    .equipment-row .name { font-weight: 500; }
+    .equipment-row .note { font-size: 0.75rem; color: var(--light); }
+    .equipment-row .price { font-weight: 600; font-variant-numeric: tabular-nums; }
+    .equipment-total {
+      padding: 0.85rem 1rem;
+      border-top: 2px solid var(--text);
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    .equipment-total .loan-note {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--light);
+      display: block;
+    }
+    .tos-box {
+      background: var(--bg-gray);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1.25rem;
+      font-size: 0.78rem;
+      line-height: 1.6;
+      color: var(--mid);
+      max-height: 120px;
+      overflow-y: auto;
+    }
+    .tos-agree {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.82rem;
+      color: var(--mid);
+      cursor: pointer;
+      margin-bottom: 1.25rem;
+    }
+    .tos-agree input { margin-top: 2px; accent-color: var(--red); flex-shrink: 0; }
+    .btn-begin {
+      display: block;
+      width: 100%;
+      padding: 0.9rem;
+      background: var(--red);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-begin:hover:not(:disabled) { background: var(--red-dark); }
+    .btn-begin:disabled { opacity: 0.4; cursor: not-allowed; }
+    .onboard-disclaimer {
+      font-size: 0.72rem;
+      color: var(--light);
+      text-align: center;
+      line-height: 1.5;
+      margin-top: 0.75rem;
+    }
+
+    /* ─── Game Screen ─── */
+    #screen-game { display: flex; flex-direction: column; min-height: calc(100vh - 64px); }
+
+    /* Stats Bar */
+    .stats-bar {
+      background: #111;
+      color: rgba(255,255,255,0.85);
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.72rem;
+      padding: 0 2rem;
+      border-bottom: 2px solid var(--red);
+      position: sticky;
+      top: 64px;
+      z-index: 90;
+    }
+    .stats-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      overflow-x: auto;
+    }
+    .stat-item { white-space: nowrap; }
+    .stat-label-sm { color: rgba(255,255,255,0.4); margin-right: 0.3em; }
+    .stat-val-sm { color: white; font-weight: 700; }
+    .stat-val-sm.danger { color: #ff6b4a; }
+    .stat-val-sm.warn { color: #f5c842; }
+    .stat-val-sm.ok { color: #6bffb8; }
+    .stat-divider { color: rgba(255,255,255,0.15); }
+    .shift-progress-bar {
+      height: 3px;
+      background: rgba(255,255,255,0.08);
+    }
+    .shift-progress-fill {
+      height: 100%;
+      background: var(--red);
+      transition: width 0.3s;
+    }
+
+    /* Game Layout */
+    .game-layout {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 1.25rem;
+      flex: 1;
+    }
+
+    /* Gig Panel */
+    .gig-panel {}
+
+    .neighborhood-bar {
+      background: white;
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 0.875rem 1.25rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .neighborhood-name {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .neighborhood-flavor {
+      font-size: 0.78rem;
+      color: var(--mid);
+      flex: 1;
+    }
+    .travel-select {
+      padding: 0.5rem 0.75rem;
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-family: inherit;
+      color: var(--mid);
+      background: var(--bg-gray);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .travel-select:focus { outline: 1px solid var(--red); }
+
+    .section-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--light);
+      margin-bottom: 0.6rem;
+    }
+
+    .gig-list { margin-bottom: 1rem; }
+
+    .gig-row {
+      background: white;
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 0.875rem 1.25rem;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .gig-row.surge { border-color: var(--gold); background: var(--gold-bg); }
+    .gig-row.fade-out { opacity: 0.4; pointer-events: none; transition: opacity 0.3s; }
+
+    .gig-info { flex: 1; min-width: 0; }
+    .gig-item { font-weight: 600; font-size: 0.9rem; }
+    .gig-meta { font-size: 0.75rem; color: var(--mid); margin-top: 0.1rem; }
+    .surge-tag {
+      display: inline-block;
+      background: var(--gold);
+      color: white;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 0.1em 0.4em;
+      border-radius: 3px;
+      vertical-align: middle;
+    }
+
+    .gig-pay {
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .gig-cash { font-weight: 700; font-size: 1rem; display: block; }
+    .gig-chit { font-size: 0.72rem; color: var(--gold); font-weight: 600; }
+
+    .gig-btns { display: flex; gap: 0.4rem; flex-shrink: 0; }
+
+    .btn-accept {
+      padding: 0.45rem 0.9rem;
+      background: var(--red);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-accept:hover { background: var(--red-dark); }
+
+    .btn-decline {
+      padding: 0.45rem 0.7rem;
+      background: none;
+      color: var(--light);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      font-family: inherit;
+      cursor: pointer;
+    }
+    .btn-decline:hover { border-color: var(--mid); color: var(--mid); }
+
+    .no-gigs {
+      background: white;
+      border: 1px dashed var(--rule);
+      border-radius: 10px;
+      padding: 2rem;
+      text-align: center;
+      color: var(--light);
+      font-size: 0.85rem;
+    }
+
+    /* Action Panel */
+    .action-row {
+      display: flex;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-action {
+      padding: 0.6rem 1.1rem;
+      border-radius: 7px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid var(--rule);
+      background: white;
+      color: var(--text);
+      transition: all 0.15s;
+    }
+    .btn-action:hover { border-color: var(--mid); }
+    .btn-action.primary {
+      background: var(--red);
+      color: white;
+      border-color: var(--red);
+    }
+    .btn-action.primary:hover { background: var(--red-dark); border-color: var(--red-dark); }
+    .btn-action:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    /* Loan card */
+    .loan-card {
+      background: white;
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .loan-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.5rem;
+    }
+    .loan-label { font-size: 0.72rem; font-weight: 600; color: var(--mid); text-transform: uppercase; letter-spacing: 0.06em; }
+    .loan-amount { font-size: 1.1rem; font-weight: 800; }
+    .loan-amount.paid { color: #22a350; }
+    .loan-bar-bg {
+      height: 6px;
+      background: var(--bg-gray);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 0.6rem;
+    }
+    .loan-bar-fill {
+      height: 100%;
+      background: var(--red);
+      border-radius: 3px;
+      transition: width 0.4s;
+    }
+    .loan-bar-fill.paid { background: #22a350; }
+    .loan-pay-row {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .loan-input {
+      flex: 1;
+      padding: 0.45rem 0.65rem;
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 0.8rem;
+      min-width: 0;
+    }
+    .loan-input:focus { outline: 1px solid var(--red); }
+
+    /* ─── Log Panel ─── */
+    .log-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .chit-value-card {
+      background: white;
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+    }
+    .chit-value-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+    .chit-value-label { font-size: 0.72rem; font-weight: 600; color: var(--mid); text-transform: uppercase; letter-spacing: 0.06em; }
+    .chit-balance { font-size: 1.5rem; font-weight: 800; color: var(--gold); }
+    .chit-usd { font-size: 0.75rem; color: var(--light); margin-top: 0.15rem; }
+    .chit-locked-notice {
+      margin-top: 0.5rem;
+      font-size: 0.72rem;
+      color: var(--red);
+      background: var(--red-bg);
+      padding: 0.35rem 0.6rem;
+      border-radius: 5px;
+    }
+
+    .log-card {
+      background: var(--terminal);
+      border-radius: 10px;
+      overflow: hidden;
+      flex: 1;
+    }
+    .log-title-bar {
+      padding: 0.5rem 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      font-family: 'Courier New', monospace;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .log-dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
+    .log-dot.r { background: #ff5f56; }
+    .log-dot.y { background: #ffbd2e; }
+    .log-dot.g { background: #27c93f; }
+
+    #event-log {
+      padding: 0.75rem 1rem;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.72rem;
+      line-height: 1.65;
+      max-height: 420px;
+      overflow-y: auto;
+      color: rgba(255,255,255,0.6);
+    }
+    .log-line { margin-bottom: 0.1rem; }
+    .log-line.ev-accept { color: #8fff8f; }
+    .log-line.ev-decline { color: #888; }
+    .log-line.ev-bad { color: #ff8060; }
+    .log-line.ev-critical { color: #ff4040; font-weight: 700; }
+    .log-line.ev-good { color: #6bffb8; }
+    .log-line.ev-travel { color: #88ccff; }
+    .log-line.ev-divider { color: rgba(255,255,255,0.2); margin: 0.3rem 0; }
+    .log-line.ev-info { color: rgba(255,255,255,0.45); }
+    .log-line.ev-header-bad { color: #ff8060; font-weight: 700; margin-top: 0.3rem; }
+    .log-line.ev-header-good { color: #6bffb8; font-weight: 700; margin-top: 0.3rem; }
+
+    /* ─── End Screen ─── */
+    #screen-end {
+      max-width: 640px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+    .end-card {
+      background: white;
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    .end-banner {
+      background: #111;
+      padding: 2rem;
+      color: white;
+    }
+    .end-banner.won { background: #0a2e1a; }
+    .end-banner.deactivated { background: #1a0a0a; }
+    .end-eyebrow {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 0.6rem;
+    }
+    .end-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 0.35rem;
+    }
+    .end-subtitle {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 1rem;
+    }
+    .end-message {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+    }
+    .end-stats-grid {
+      padding: 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .end-stat {}
+    .end-stat-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--light);
+      margin-bottom: 0.2rem;
+    }
+    .end-stat-val {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    .end-stat-sub { font-size: 0.72rem; color: var(--light); }
+    .end-footer {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--rule);
+      font-size: 0.75rem;
+      color: var(--light);
+      line-height: 1.5;
+    }
+    .btn-play-again {
+      display: block;
+      width: 100%;
+      padding: 0.9rem;
+      background: var(--red);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    .btn-play-again:hover { background: var(--red-dark); }
+
+    @media (max-width: 780px) {
+      .game-layout { grid-template-columns: 1fr; }
+      .log-panel { order: -1; }
+      #event-log { max-height: 180px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Chitcoin glyph + PoorDash logo -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="chit-glyph" viewBox="0 0 14 18">
+      <path d="M 11.24 4.76 A 6 6 0 1 0 11.24 13.24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="5" y1="1.5" x2="5" y2="16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="9" y1="1.5" x2="9" y2="16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="pd-logo" viewBox="0 0 40 40">
+      <rect width="40" height="40" rx="10" fill="#E8321A"/>
+      <path d="M10 8h12c5.523 0 10 4.477 10 10s-4.477 10-10 10H18v4l-5-5 5-5v4h4a6 6 0 000-12H10V8z" fill="white"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ─── Nav ─── -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <svg viewBox="0 0 40 40"><use href="#pd-logo"/></svg>
+      PoorDash
+    </a>
+    <div class="nav-links">
+      <a href="index.html#earn">Earn</a>
+      <a href="index.html#chitcoin">Chitcoin</a>
+      <a href="index.html#why">Why PoorDash</a>
+      <a href="about.html">About</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ─── Onboarding ─── -->
+<div id="screen-onboard">
+  <div class="onboard-eyebrow">PoorDash Contractor Portal</div>
+  <div class="onboard-card">
+    <h1>Congratulations, Contractor.</h1>
+    <p class="sub">Your application has been reviewed and conditionally approved. Before you begin earning, please complete your equipment provisioning and acknowledge the following agreements.</p>
+
+    <div class="equipment-table">
+      <div class="equipment-table-header">
+        <span>Starter Kit — Required Equipment</span>
+        <span>Amount</span>
+      </div>
+      <div class="equipment-row">
+        <div>
+          <div class="name">PoorDash™ Insulated Delivery Bag (Pro)</div>
+          <div class="note">Mandatory. Non-returnable. PoorDash-branded only.</div>
+        </div>
+        <div class="price">$399.00</div>
+      </div>
+      <div class="equipment-row">
+        <div>
+          <div class="name">MagMount Phone Cradle (PoorDash Edition)</div>
+          <div class="note">Required for in-app navigation. USB-C not included.</div>
+        </div>
+        <div class="price">$149.00</div>
+      </div>
+      <div class="equipment-row">
+        <div>
+          <div class="name">Background Check Processing Fee</div>
+          <div class="note">Third-party provider. Non-refundable regardless of result.</div>
+        </div>
+        <div class="price">$29.99</div>
+      </div>
+      <div class="equipment-row">
+        <div>
+          <div class="name">CHIT Wallet Activation + App Access Fee</div>
+          <div class="note">One-time. Covers platform onboarding and digital asset custody.</div>
+        </div>
+        <div class="price">$269.01</div>
+      </div>
+      <div class="equipment-total">
+        <div>
+          Equipment Loan Total
+          <span class="loan-note">0% interest for 30 shifts · auto-deducted from earnings · non-negotiable</span>
+        </div>
+        <div>$847.00</div>
+      </div>
+    </div>
+
+    <div class="tos-box">
+      By proceeding, you acknowledge that you are an Independent Contractor and not an employee of PoorDash Inc. ("PoorDash," "we," "the platform," "your future"). You waive all rights to minimum wage, overtime, workers' compensation, unemployment insurance, healthcare, and collective bargaining. You agree that CHIT tokens are a proprietary platform asset with no guaranteed cash value, no guaranteed exchange pathway, and no guaranteed existence after platform sunset. You agree to arbitrate all disputes individually. You acknowledge that your acceptance rate, completion rate, customer rating, and on-time rate are metrics we track and may use to deprioritize, suspend, or permanently deactivate your account at our sole discretion without notice, explanation, or appeal. You agree that deactivation does not constitute termination of employment because you were never employed. You agree that equipment fees are non-refundable and that the equipment loan accrues at 0% APR for thirty (30) shifts, after which all remaining balances are due immediately. You agree to the PoorDash Community Guidelines, the Chitcoin White Paper (v2.3, subject to change), the CHIT Wallet User Agreement, the Data Sharing and Resale Consent Form, the Biometric Collection Notice (applicable jurisdictions), the Arbitration Rider, the Class Action Waiver, and any future agreements we have not yet written. You acknowledge that you have read and understood this document. You have not read and will not understand this document.
+    </div>
+
+    <label class="tos-agree">
+      <input type="checkbox" id="tos-check">
+      I have read and agree to all PoorDash Contractor Agreements, Equipment Loan Terms, CHIT Wallet Terms, Arbitration Agreement, Data Sharing Consent, and all other documents referenced above or incorporated herein.
+    </label>
+
+    <button class="btn-begin" id="btn-start" disabled>Begin Your Journey →</button>
+    <p class="onboard-disclaimer">By clicking "Begin Your Journey," your $847.00 equipment loan is immediately activated. You may not cancel after this point.</p>
+  </div>
+</div>
+
+<!-- ─── Game Screen ─── -->
+<div id="screen-game" hidden>
+
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <span class="stat-label-sm">SHIFT</span>
+        <span class="stat-val-sm" id="stat-shift">1</span><span class="stat-label-sm">/30</span>
+      </div>
+      <span class="stat-divider">|</span>
+      <div class="stat-item">
+        <span class="stat-label-sm">CASH</span>
+        <span class="stat-val-sm" id="stat-cash">50.00</span>
+      </div>
+      <span class="stat-divider">|</span>
+      <div class="stat-item">
+        <span class="stat-label-sm">LOAN</span>
+        <span class="stat-val-sm" id="stat-loan">847.00</span>
+      </div>
+      <span class="stat-divider">|</span>
+      <div class="stat-item">
+        <span class="stat-label-sm">CHIT</span>
+        <span class="stat-val-sm warn" id="stat-chit">0</span>
+      </div>
+      <span class="stat-divider">|</span>
+      <div class="stat-item">
+        <span class="stat-label-sm">RATING</span>
+        <span class="stat-val-sm" id="stat-rating">4.9</span>
+      </div>
+      <span class="stat-divider">|</span>
+      <div class="stat-item">
+        <span class="stat-label-sm">ACCEPTANCE</span>
+        <span class="stat-val-sm" id="stat-acceptance">100</span><span class="stat-label-sm">%</span>
+      </div>
+    </div>
+    <div class="shift-progress-bar">
+      <div class="shift-progress-fill" id="shift-progress" style="width:0%"></div>
+    </div>
+  </div>
+
+  <div class="game-layout">
+
+    <!-- Left: Gigs + Actions -->
+    <div class="gig-panel">
+      <div class="neighborhood-bar">
+        <div>
+          <div class="neighborhood-name" id="neighborhood-name">SoMa</div>
+          <div class="neighborhood-flavor" id="neighborhood-flavor">Dense tech corridors. Zero parking.</div>
+        </div>
+        <select class="travel-select" id="travel-select">
+          <option value="">Travel to... ($6)</option>
+        </select>
+      </div>
+
+      <div class="section-label">Available Gigs</div>
+      <div class="gig-list" id="gig-list"></div>
+
+      <div class="action-row">
+        <button class="btn-action" id="btn-cashout">Cash Out CHIT</button>
+        <button class="btn-action primary" id="btn-end-shift">End Shift →</button>
+      </div>
+
+      <div class="loan-card" id="loan-card">
+        <div class="loan-header">
+          <span class="loan-label">Equipment Loan</span>
+          <span class="loan-amount" id="loan-display">$847.00</span>
+        </div>
+        <div class="loan-bar-bg">
+          <div class="loan-bar-fill" id="loan-bar" style="width:100%"></div>
+        </div>
+        <div class="loan-pay-row">
+          <input class="loan-input" type="number" id="loan-payment-input" placeholder="$ amount" min="1" step="0.01">
+          <button class="btn-action" id="btn-pay-loan">Pay Loan</button>
+          <button class="btn-action" id="btn-pay-loan-all">Pay All</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Log + CHIT value -->
+    <div class="log-panel">
+      <div class="chit-value-card">
+        <div class="chit-value-header">
+          <span class="chit-value-label"><svg class="chit-glyph" style="stroke:var(--gold)"><use href="#chit-glyph"/></svg> CHIT Balance</span>
+        </div>
+        <div class="chit-balance" id="chit-balance-display">0</div>
+        <div class="chit-usd">≈ $<span id="chit-usd-value">0.0000</span> USD · <span id="chit-rate-display">₿0.0000001</span>/CHIT</div>
+        <div class="chit-locked-notice" id="wallet-locked-notice" hidden>CHIT wallet under maintenance.</div>
+      </div>
+
+      <div class="log-card">
+        <div class="log-title-bar">
+          <span class="log-dot r"></span>
+          <span class="log-dot y"></span>
+          <span class="log-dot g"></span>
+          &nbsp; Shift Log
+        </div>
+        <div id="event-log"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ─── End Screen ─── -->
+<div id="screen-end" hidden>
+  <div class="end-card">
+    <div class="end-banner" id="end-banner">
+      <div class="end-eyebrow">PoorDash Contractor Summary</div>
+      <div class="end-title" id="end-title"></div>
+      <div class="end-subtitle" id="end-subtitle"></div>
+      <div class="end-message" id="end-message"></div>
+    </div>
+    <div class="end-stats-grid">
+      <div class="end-stat">
+        <div class="end-stat-label">Shifts Worked</div>
+        <div class="end-stat-val" id="end-shifts">—</div>
+      </div>
+      <div class="end-stat">
+        <div class="end-stat-label">Cash Earned</div>
+        <div class="end-stat-val" id="end-cash">—</div>
+        <div class="end-stat-sub">before expenses</div>
+      </div>
+      <div class="end-stat">
+        <div class="end-stat-label">CHIT Earned</div>
+        <div class="end-stat-val" id="end-chit">—</div>
+        <div class="end-stat-sub end-chit-usd" id="end-chit-usd">≈ $—</div>
+      </div>
+      <div class="end-stat">
+        <div class="end-stat-label">Effective Hourly</div>
+        <div class="end-stat-val" id="end-hourly">—</div>
+        <div class="end-stat-sub">estimated</div>
+      </div>
+      <div class="end-stat">
+        <div class="end-stat-label">Loan Remaining</div>
+        <div class="end-stat-val" id="end-loan-remaining">—</div>
+      </div>
+      <div class="end-stat">
+        <div class="end-stat-label">Final Rating</div>
+        <div class="end-stat-val" id="end-rating">—</div>
+      </div>
+    </div>
+    <div class="end-footer" id="end-footer"></div>
+  </div>
+  <button class="btn-play-again" id="btn-play-again">Try Again</button>
+</div>
+
+<script>
+// ─── DATA ───────────────────────────────────────────────────────────────────
+
+const NEIGHBORHOODS = [
+  { id: 'soma',       name: 'SoMa',          flavor: 'Dense tech corridors. Zero parking. High volume.',       payMod: 1.00, chitMod: 1.2, density: 5 },
+  { id: 'pac',        name: 'Pac Heights',   flavor: 'High earners. Long distances. They tip in validation.',  payMod: 1.50, chitMod: 0.7, density: 2 },
+  { id: 'mission',    name: 'Mission',        flavor: 'High energy. Double-parked everything. Great tacos.',    payMod: 1.10, chitMod: 1.4, density: 5 },
+  { id: 'tenderloin', name: 'Tenderloin',     flavor: 'Dense. Very high CHIT bonuses. We will not elaborate.',  payMod: 0.90, chitMod: 2.0, density: 4 },
+  { id: 'richmond',   name: 'Richmond',       flavor: 'Suburban sprawl. Long rides. Low density.',              payMod: 0.95, chitMod: 0.8, density: 2 },
+  { id: 'castro',     name: 'Castro',         flavor: 'Nightlife premium. Weekend surge. Friendly customers.',  payMod: 1.20, chitMod: 1.1, density: 3 },
+  { id: 'marina',     name: 'Marina',         flavor: 'Young professionals. Reliable volume. Zero tips.',       payMod: 1.00, chitMod: 0.9, density: 3 },
+];
+
+const GIG_TEMPLATES = [
+  { item: 'Burrito',            restaurant: 'Mission Burritos',      baseCash: 5.50, baseChit: 200, dist: 1.8 },
+  { item: 'Spicy Tuna Roll',    restaurant: 'Koi Palace',            baseCash: 8.50, baseChit: 350, dist: 3.2 },
+  { item: 'Pepperoni Pizza',    restaurant: "Tony's Pies",           baseCash: 5.00, baseChit: 180, dist: 2.1 },
+  { item: 'Boba Tea ×4',        restaurant: 'Boba Palace',           baseCash: 4.50, baseChit: 420, dist: 1.2 },
+  { item: 'Vegan Power Bowl',   restaurant: 'GreenTier Kitchen',     baseCash: 7.00, baseChit: 300, dist: 2.8 },
+  { item: 'Carnitas Tacos',     restaurant: 'El Sueño',              baseCash: 5.50, baseChit: 500, dist: 2.4 },
+  { item: 'Kale Caesar',        restaurant: 'Lettuce Earn',          baseCash: 4.00, baseChit: 160, dist: 1.5 },
+  { item: 'Tonkotsu Ramen',     restaurant: 'Noodle Hustle',         baseCash: 6.50, baseChit: 280, dist: 3.0 },
+  { item: 'Pad Thai',           restaurant: 'Thaitown Express',      baseCash: 6.00, baseChit: 240, dist: 2.6 },
+  { item: 'Birria Tacos',       restaurant: 'Casa Birria',           baseCash: 6.50, baseChit: 480, dist: 3.5 },
+  { item: 'Impossible Burger',  restaurant: 'Plant Daddy',           baseCash: 7.50, baseChit: 320, dist: 2.2 },
+  { item: 'Late Night Fries',   restaurant: "McDonald's",            baseCash: 3.50, baseChit: 600, dist: 0.9 },
+  { item: 'Açaí Bowl',          restaurant: "Bowl'd Over",           baseCash: 6.00, baseChit: 200, dist: 1.7 },
+  { item: 'Dim Sum Variety',    restaurant: 'Golden Gate Dim Sum',   baseCash: 9.00, baseChit: 400, dist: 4.1 },
+  { item: 'Cold Brew ×2',       restaurant: 'Drip District',         baseCash: 3.00, baseChit: 150, dist: 0.7 },
+];
+
+const PLATFORM_FEE_DEFAULT = 0.25;
+const FUEL_BASE = 8.00;
+const TRAVEL_COST = 6.00;
+const CHIT_RATE_BASE = 0.0000001; // BTC per CHIT
+const BTC_USD = 62000;
+const CHIT_CASHOUT_DISCOUNT = 0.35;
+const CHIT_CASHOUT_FEE = 0.15;
+const LOAN_TOTAL = 847;
+
+const EVENTS = [
+  { type:'bad',  w:10, title:'Flat Tire',
+    desc:'Your tire blew mid-delivery. Repair cost deducted.',
+    apply(s){ s.cash -= 65; log('⚠  Flat tire. Repair: -$65.00.','ev-bad'); } },
+
+  { type:'bad',  w:8,  title:'Algorithm Update',
+    desc:'PoorDash has updated its base rate algorithm. Effective immediately.',
+    apply(s){ s.rateMultiplier *= 0.92; log('⚠  Algorithm update. All rates reduced 8%.','ev-bad'); } },
+
+  { type:'bad',  w:8,  title:'Customer Dispute',
+    desc:'A customer reported their order was unsatisfactory. Your rating has been adjusted.',
+    apply(s){ s.rating = +Math.max(1.0, s.rating - 0.2).toFixed(1); log('⚠  Customer dispute. New rating: ★' + s.rating.toFixed(1) + '.','ev-bad'); } },
+
+  { type:'bad',  w:7,  title:'Background Recheck',
+    desc:'Routine contractor background recheck. Processing fee deducted.',
+    apply(s){ s.cash -= 19.99; log('⚠  Background recheck fee: -$19.99.','ev-bad'); } },
+
+  { type:'bad',  w:6,  title:'Service Fee Update',
+    desc:'PoorDash has updated its platform service fee structure. New rate: 30%.',
+    apply(s){ s.feeRate = 0.30; log('⚠  Platform fee increased to 30%.','ev-bad'); } },
+
+  { type:'bad',  w:6,  title:'CHIT Market Correction',
+    desc:'The CHIT market has experienced a correction. Your holdings have been adjusted.',
+    apply(s){ s.chitRate *= 0.5; log('⚠  CHIT market correction. Exchange rate halved.','ev-bad'); } },
+
+  { type:'bad',  w:5,  title:'Phone Mount Failure',
+    desc:'Your PoorDash-approved phone mount cracked. Replacement required to continue.',
+    apply(s){ s.cash -= 34.99; log('⚠  Phone mount failure. Replacement: -$34.99.','ev-bad'); } },
+
+  { type:'bad',  w:4,  title:'Insurance Gap Notice',
+    desc:'Your personal auto policy does not cover commercial delivery activity. This notification satisfies our disclosure obligation.',
+    apply(s){ log('⚠  Insurance gap notice. No action taken. You are simply uninsured.','ev-bad'); } },
+
+  { type:'bad',  w:4,  title:'CHIT Wallet Maintenance',
+    desc:'Scheduled maintenance. CHIT withdrawals suspended for 2 shifts.',
+    apply(s){ s.walletLocked = 2; log('⚠  CHIT wallet locked. 2 shifts until resumption.','ev-bad'); } },
+
+  { type:'bad',  w:3,  title:'Account Under Review',
+    desc:'Your account has been flagged for review. PoorDash will not provide further detail at this time.',
+    apply(s){ s.rating = +Math.max(1.0, s.rating - 0.1).toFixed(1); log('⚠  Account under review. Rating impact: -0.1.','ev-bad'); } },
+
+  { type:'bad',  w:2,  title:'Contractor Agreement Update',
+    desc:'PoorDash has updated the Contractor Agreement. By continuing to use the platform, you agree.',
+    apply(s){ s.feeRate = Math.min(0.35, s.feeRate + 0.02); log('⚠  Contractor Agreement updated. Platform fee +2%.','ev-bad'); } },
+
+  { type:'bad',  w:1,  title:'Immediate Deactivation',
+    desc:'Your account has been deactivated. Thank you for your service to the community.',
+    apply(s){ s.deactivated = true; log('🔴 ACCOUNT DEACTIVATED. Thank you for your service.','ev-critical'); } },
+
+  // Good events
+  { type:'good', w:9,  title:'Surge Pricing Active',
+    desc:'High demand in your area. Surge bonus applied to your next 3 gigs.',
+    apply(s){ s.surgeGigs = 3; s.surgeCash = 3.00; log('✓  Surge active! Next 3 gigs: +$3.00 cash each.','ev-good'); } },
+
+  { type:'good', w:7,  title:'CHIT Market Rally',
+    desc:'CHIT is pumping. You still cannot cash it out, but the number is larger.',
+    apply(s){ s.chitRate *= 1.8; log('✓  CHIT rally! Exchange rate up 80%. Cashout still requires 1,000 CHIT minimum.','ev-good'); } },
+
+  { type:'good', w:5,  title:'Cash Tip (Exceptional)',
+    desc:'A customer handed you a physical cash tip. This almost never happens.',
+    apply(s){ s.cash += 20; log('✓  Physical cash tip: +$20.00. Unprecedented.','ev-good'); } },
+
+  { type:'good', w:5,  title:'Viral Delivery',
+    desc:'A customer posted about your delivery. Platform bonus applied.',
+    apply(s){ s.cash += 15; log('✓  Viral moment. Platform courtesy bonus: +$15.00.','ev-good'); } },
+
+  { type:'good', w:4,  title:'Bonus Gig Unlocked',
+    desc:'High-value gig added to your queue. Performance reward.',
+    apply(s){ s.bonusGig = true; log('✓  Bonus gig unlocked this shift.','ev-good'); } },
+
+  { type:'good', w:3,  title:'CHIT Loyalty Bonus',
+    desc:'You have maintained a high rating. Bonus CHIT awarded.',
+    apply(s){ if(s.rating >= 4.6){ s.chit += 1000; log('✓  Loyalty bonus: +1,000 CHIT.','ev-good'); } else { log('✓  Loyalty bonus: not eligible (rating below 4.6).','ev-info'); } } },
+];
+
+// ─── STATE ──────────────────────────────────────────────────────────────────
+
+let S = {};
+
+function initState() {
+  S = {
+    shift: 1,
+    maxShifts: 30,
+    cash: 50.00,
+    loan: LOAN_TOTAL,
+    chit: 0,
+    rating: 4.9,
+    acceptedTotal: 0,
+    declinedTotal: 0,
+    acceptanceRate: 100,
+    cashEarnedTotal: 0,
+    chitEarnedTotal: 0,
+    neighborhood: NEIGHBORHOODS[0],
+    rateMultiplier: 1.0,
+    feeRate: PLATFORM_FEE_DEFAULT,
+    chitRate: CHIT_RATE_BASE,
+    availableGigs: [],
+    surgeGigs: 0,
+    surgeCash: 0,
+    walletLocked: 0,
+    bonusGig: false,
+    deactivated: false,
+    gameOver: false,
+    won: false,
+  };
+}
+
+// ─── GIG GENERATION ─────────────────────────────────────────────────────────
+
+function generateGigs() {
+  const n = S.neighborhood;
+  let count = n.density + (S.bonusGig ? 1 : 0);
+  S.bonusGig = false;
+
+  const pool = [...GIG_TEMPLATES].sort(() => Math.random() - 0.5).slice(0, count);
+
+  return pool.map(t => {
+    const payVar = 0.85 + Math.random() * 0.30;
+    const chitVar = 0.80 + Math.random() * 0.40;
+    const distVar = 0.80 + Math.random() * 0.40;
+    const surge = S.surgeGigs > 0;
+
+    const gross = t.baseCash * n.payMod * S.rateMultiplier * payVar;
+    const net = gross * (1 - S.feeRate) + (surge ? S.surgeCash : 0);
+    if (surge) S.surgeGigs--;
+
+    return {
+      item: t.item,
+      restaurant: t.restaurant,
+      dist: +(t.dist * distVar).toFixed(1),
+      net: +net.toFixed(2),
+      chit: Math.round(t.baseChit * n.chitMod * chitVar),
+      surge,
+    };
+  });
+}
+
+// ─── ACTIONS ────────────────────────────────────────────────────────────────
+
+function acceptGig(i) {
+  const g = S.availableGigs[i];
+  if (!g) return;
+
+  S.cash += g.net;
+  S.chit += g.chit;
+  S.cashEarnedTotal += g.net;
+  S.chitEarnedTotal += g.chit;
+  S.acceptedTotal++;
+  recalcAcceptance();
+
+  // Small random rating nudge
+  if (Math.random() < 0.12) {
+    const delta = Math.random() < 0.25 ? -0.1 : 0.1;
+    S.rating = +Math.min(5.0, Math.max(1.0, S.rating + delta)).toFixed(1);
+  }
+
+  log(`✓  Delivered: ${g.item} (${g.restaurant}, ${g.dist}mi)  +$${g.net.toFixed(2)} | +${g.chit.toLocaleString()} CHIT`, 'ev-accept');
+
+  S.availableGigs.splice(i, 1);
+
+  if (Math.random() < 0.15) fireRandomEvent();
+
+  checkGameOver();
+  render();
+}
+
+function declineGig(i) {
+  const g = S.availableGigs[i];
+  if (!g) return;
+
+  S.declinedTotal++;
+  recalcAcceptance();
+  log(`✗  Declined: ${g.item}. Acceptance rate: ${S.acceptanceRate}%.`, 'ev-decline');
+
+  if (S.acceptanceRate < 70) {
+    log('⚠  Acceptance rate below 70%. Please maintain above 70%. This is a recommendation.', 'ev-bad');
+  }
+  if (S.acceptanceRate < 60) {
+    log('🔴 Acceptance rate critically low. Account deactivated.', 'ev-critical');
+    S.deactivated = true;
+  }
+
+  S.availableGigs.splice(i, 1);
+  checkGameOver();
+  render();
+}
+
+function recalcAcceptance() {
+  const total = S.acceptedTotal + S.declinedTotal;
+  S.acceptanceRate = total === 0 ? 100 : Math.round((S.acceptedTotal / total) * 100);
+}
+
+function travel(neighborhoodId) {
+  const dest = NEIGHBORHOODS.find(n => n.id === neighborhoodId);
+  if (!dest || dest.id === S.neighborhood.id) return;
+
+  S.cash -= TRAVEL_COST;
+  log(`→  Traveled to ${dest.name}. Fuel: -$${TRAVEL_COST.toFixed(2)}.`, 'ev-travel');
+  log(`   "${dest.flavor}"`, 'ev-info');
+
+  S.neighborhood = dest;
+  S.availableGigs = generateGigs();
+
+  document.getElementById('travel-select').value = '';
+  checkGameOver();
+  render();
+}
+
+function cashOutChit() {
+  if (S.walletLocked > 0) {
+    log('✗  CHIT wallet under maintenance. Unavailable.', 'ev-bad');
+    return;
+  }
+  if (S.chit < 1000) {
+    log(`✗  Minimum withdrawal: 1,000 CHIT. You have ${S.chit.toLocaleString()} CHIT.`, 'ev-bad');
+    return;
+  }
+  const nominal = S.chit * S.chitRate * BTC_USD;
+  const received = +(nominal * CHIT_CASHOUT_DISCOUNT * (1 - CHIT_CASHOUT_FEE)).toFixed(2);
+  log(`💱 Cashing out ${S.chit.toLocaleString()} CHIT.`, 'ev-info');
+  log(`   Nominal value: $${nominal.toFixed(4)}`, 'ev-info');
+  log(`   After spread (35%) and fee (15%): $${received.toFixed(2)}`, 'ev-info');
+  S.cash += received;
+  S.chit = 0;
+  render();
+}
+
+function payLoan(amount) {
+  if (S.loan <= 0) { log('✓  Loan already paid off.', 'ev-good'); return; }
+  const payment = Math.min(amount, S.loan, S.cash);
+  if (payment <= 0) { log('✗  Insufficient cash for loan payment.', 'ev-bad'); return; }
+  S.loan = +Math.max(0, S.loan - payment).toFixed(2);
+  S.cash = +((S.cash - payment)).toFixed(2);
+  log(`💳 Loan payment: -$${payment.toFixed(2)}. Remaining: $${S.loan.toFixed(2)}.`, 'ev-info');
+  if (S.loan <= 0) {
+    log('✓  Equipment loan paid off. You own your insulated bag.', 'ev-good');
+    S.won = true;
+  }
+  render();
+}
+
+function endShift() {
+  const fuel = +(FUEL_BASE + Math.random() * 4).toFixed(2);
+  S.cash -= fuel;
+  if (S.walletLocked > 0) S.walletLocked--;
+
+  log(`─── Shift ${S.shift} complete ───────────────────────`, 'ev-divider');
+  log(`   Fuel & expenses: -$${fuel.toFixed(2)}`, 'ev-info');
+  log(`   Cash: $${S.cash.toFixed(2)} | Loan: $${S.loan.toFixed(2)} | CHIT: ${S.chit.toLocaleString()}`, 'ev-info');
+
+  if (Math.random() < 0.38) fireRandomEvent();
+
+  S.shift++;
+  S.availableGigs = generateGigs();
+
+  checkGameOver();
+  render();
+}
+
+// ─── EVENTS ─────────────────────────────────────────────────────────────────
+
+function fireRandomEvent() {
+  const totalW = EVENTS.reduce((s, e) => s + e.w, 0);
+  let roll = Math.random() * totalW;
+  for (const e of EVENTS) {
+    roll -= e.w;
+    if (roll <= 0) {
+      log(`── EVENT: ${e.title} ────────────────────`, e.type === 'good' ? 'ev-header-good' : 'ev-header-bad');
+      log(`   ${e.desc}`, 'ev-info');
+      e.apply(S);
+      return;
+    }
+  }
+}
+
+// ─── WIN / LOSE ──────────────────────────────────────────────────────────────
+
+function checkGameOver() {
+  if (S.gameOver) return;
+
+  if (S.deactivated || S.rating < 4.0) {
+    if (S.rating < 4.0 && !S.deactivated) {
+      S.deactivated = true;
+      log('🔴 Rating below 4.0. Account deactivated.', 'ev-critical');
+    }
+    S.gameOver = true;
+    S.won = false;
+    setTimeout(showEndScreen, 600);
+    return;
+  }
+
+  if (S.cash < -50) {
+    log('🔴 Unable to cover operating expenses. Account suspended.', 'ev-critical');
+    S.gameOver = true;
+    S.won = false;
+    setTimeout(showEndScreen, 600);
+    return;
+  }
+
+  if (S.shift > S.maxShifts) {
+    S.gameOver = true;
+    setTimeout(showEndScreen, 400);
+    return;
+  }
+}
+
+// ─── LOGGING ────────────────────────────────────────────────────────────────
+
+function log(text, cls = '') {
+  const logEl = document.getElementById('event-log');
+  const line = document.createElement('div');
+  line.className = 'log-line ' + cls;
+  line.textContent = text;
+  logEl.prepend(line);
+  while (logEl.children.length > 60) logEl.removeChild(logEl.lastChild);
+}
+
+// ─── RENDER ──────────────────────────────────────────────────────────────────
+
+function render() {
+  // Stats
+  setText('stat-shift', S.shift);
+  setText('stat-cash', '$' + S.cash.toFixed(2));
+  setText('stat-loan', S.loan <= 0 ? 'PAID' : '$' + S.loan.toFixed(2));
+  setText('stat-chit', S.chit.toLocaleString());
+  setText('stat-rating', '★' + S.rating.toFixed(1));
+  setText('stat-acceptance', S.acceptanceRate + '%');
+
+  setClass('stat-cash',       S.cash < 20   ? 'stat-val-sm danger' : 'stat-val-sm ok');
+  setClass('stat-loan',       S.loan <= 0   ? 'stat-val-sm ok'     : S.loan < 200 ? 'stat-val-sm warn' : 'stat-val-sm danger');
+  setClass('stat-rating',     S.rating < 4.3 ? 'stat-val-sm danger' : 'stat-val-sm');
+  setClass('stat-acceptance', S.acceptanceRate < 70 ? 'stat-val-sm danger' : 'stat-val-sm');
+
+  // Progress bar
+  const pct = ((S.shift - 1) / S.maxShifts) * 100;
+  document.getElementById('shift-progress').style.width = pct + '%';
+
+  // Neighborhood
+  setText('neighborhood-name', S.neighborhood.name);
+  setText('neighborhood-flavor', S.neighborhood.flavor);
+
+  // Travel select
+  const sel = document.getElementById('travel-select');
+  sel.innerHTML = '<option value="">Travel to... ($6)</option>' +
+    NEIGHBORHOODS.filter(n => n.id !== S.neighborhood.id)
+      .map(n => `<option value="${n.id}">${n.name}</option>`).join('');
+
+  // CHIT display
+  const chitUSD = S.chit * S.chitRate * BTC_USD;
+  setText('chit-balance-display', S.chit.toLocaleString());
+  setText('chit-usd-value', chitUSD.toFixed(4));
+  setText('chit-rate-display', '₿' + S.chitRate.toFixed(7));
+
+  const lockNotice = document.getElementById('wallet-locked-notice');
+  lockNotice.hidden = S.walletLocked <= 0;
+  if (S.walletLocked > 0) setText('wallet-locked-notice', `CHIT wallet locked. ${S.walletLocked} shift(s) remaining.`);
+
+  // Loan card
+  const loanPct = Math.max(0, (S.loan / LOAN_TOTAL) * 100);
+  const loanBar = document.getElementById('loan-bar');
+  loanBar.style.width = loanPct + '%';
+  loanBar.className = 'loan-bar-fill' + (S.loan <= 0 ? ' paid' : '');
+  const loanDisplay = document.getElementById('loan-display');
+  loanDisplay.textContent = S.loan <= 0 ? 'PAID OFF' : '$' + S.loan.toFixed(2);
+  loanDisplay.className = 'loan-amount' + (S.loan <= 0 ? ' paid' : '');
+
+  // Gig list
+  renderGigs();
+}
+
+function renderGigs() {
+  const container = document.getElementById('gig-list');
+  container.innerHTML = '';
+
+  if (S.availableGigs.length === 0) {
+    container.innerHTML = '<div class="no-gigs">No gigs available in this area. Travel or end shift.</div>';
+    return;
+  }
+
+  S.availableGigs.forEach((g, i) => {
+    const row = document.createElement('div');
+    row.className = 'gig-row' + (g.surge ? ' surge' : '');
+    row.innerHTML = `
+      <div class="gig-info">
+        <div class="gig-item">${g.item}${g.surge ? ' <span class="surge-tag">SURGE</span>' : ''}</div>
+        <div class="gig-meta">${g.restaurant} · ${g.dist} mi</div>
+      </div>
+      <div class="gig-pay">
+        <span class="gig-cash">$${g.net.toFixed(2)}</span>
+        <span class="gig-chit">+${g.chit.toLocaleString()} CHIT</span>
+      </div>
+      <div class="gig-btns">
+        <button class="btn-accept" onclick="acceptGig(${i})">Accept</button>
+        <button class="btn-decline" onclick="declineGig(${i})">Decline</button>
+      </div>
+    `;
+    container.appendChild(row);
+  });
+}
+
+function setText(id, val) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = val;
+}
+function setClass(id, cls) {
+  const el = document.getElementById(id);
+  if (el) el.className = cls;
+}
+
+// ─── SCREENS ─────────────────────────────────────────────────────────────────
+
+function showScreen(id) {
+  ['screen-onboard','screen-game','screen-end'].forEach(s => {
+    document.getElementById(s).hidden = (s !== id);
+  });
+}
+
+function showEndScreen() {
+  showScreen('screen-end');
+
+  const shifts = S.shift - 1;
+  const hoursEst = shifts * 6;
+  const hourly = hoursEst > 0 ? (S.cashEarnedTotal / hoursEst) : 0;
+  const chitUSD = S.chitEarnedTotal * S.chitRate * BTC_USD;
+  const loanLeft = Math.max(0, S.loan);
+
+  let title, subtitle, message, bannerClass = '';
+  const footerLines = [];
+
+  if (S.won && S.loan <= 0) {
+    bannerClass = 'won';
+    title = 'Congratulations, Contractor.';
+    subtitle = 'You paid off your equipment loan.';
+    message = `After ${shifts} shifts, you have achieved loan freedom. You now own an insulated bag. The platform congratulates you on your entrepreneurship and encourages you to continue delivering. The bag is non-transferable.`;
+    footerLines.push('Your CHIT balance has no expiration date at this time. Terms subject to change.');
+  } else if (S.deactivated) {
+    bannerClass = 'deactivated';
+    title = 'Your account has been deactivated.';
+    subtitle = 'Thank you for your service to the PoorDash community.';
+    message = `After ${shifts} shifts, PoorDash has determined that you no longer meet our contractor quality standards. Your CHIT balance has been retained by PoorDash per Section 14.7 of the Contractor Agreement (Forfeiture on Deactivation). Your equipment loan balance of $${loanLeft.toFixed(2)} has been referred to our collections partner.`;
+    footerLines.push('You may not appeal this decision. Arbitration is available at your expense.');
+  } else if (S.cash < -50) {
+    title = 'Contractor Account Suspended.';
+    subtitle = 'Insufficient funds to cover operating expenses.';
+    message = `After ${shifts} shifts, your operating costs exceeded your earnings. Your equipment loan balance of $${loanLeft.toFixed(2)} remains outstanding and will continue to accrue. PoorDash wishes you the best in your future entrepreneurial endeavors.`;
+    footerLines.push('Remaining loan balance has been forwarded to our collections partner, Integrity Recovery Solutions LLC.');
+  } else {
+    title = 'Season Complete.';
+    subtitle = `${shifts}-shift evaluation period concluded.`;
+    message = `PoorDash thanks you for your contributions to the contractor ecosystem. ` +
+      (loanLeft > 0
+        ? `Your equipment loan balance of $${loanLeft.toFixed(2)} remains outstanding. Per your agreement, this balance is now immediately due in full.`
+        : `You have paid off your equipment loan. PoorDash acknowledges your achievement.`);
+    footerLines.push(loanLeft > 0
+      ? 'Remaining loan balance forwarded to Integrity Recovery Solutions LLC.'
+      : 'Your contractor account remains active. New shifts are available.');
+  }
+
+  const banner = document.getElementById('end-banner');
+  banner.className = 'end-banner' + (bannerClass ? ' ' + bannerClass : '');
+
+  setText('end-title', title);
+  setText('end-subtitle', subtitle);
+  setText('end-message', message);
+  setText('end-shifts', shifts);
+  setText('end-cash', '$' + S.cashEarnedTotal.toFixed(2));
+  setText('end-chit', S.chitEarnedTotal.toLocaleString() + ' CHIT');
+  setText('end-chit-usd', '≈ $' + chitUSD.toFixed(4) + ' USD at current rate');
+  setText('end-hourly', '$' + hourly.toFixed(2) + '/hr');
+  setText('end-loan-remaining', '$' + loanLeft.toFixed(2));
+  setText('end-rating', '★' + S.rating.toFixed(1));
+  setText('end-footer', footerLines.join(' '));
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+
+document.addEventListener('DOMContentLoaded', () => {
+  const tosCheck = document.getElementById('tos-check');
+  const startBtn = document.getElementById('btn-start');
+
+  tosCheck.addEventListener('change', () => {
+    startBtn.disabled = !tosCheck.checked;
+  });
+
+  startBtn.addEventListener('click', () => {
+    initState();
+    document.getElementById('event-log').innerHTML = '';
+    S.availableGigs = generateGigs();
+    log('Welcome to the PoorDash Contractor Portal.', 'ev-info');
+    log('Equipment loan activated: -$847.00.', 'ev-bad');
+    log(`Starting location: ${S.neighborhood.name}. Good luck.`, 'ev-info');
+    showScreen('screen-game');
+    render();
+  });
+
+  document.getElementById('travel-select').addEventListener('change', e => {
+    if (e.target.value) travel(e.target.value);
+  });
+
+  document.getElementById('btn-cashout').addEventListener('click', cashOutChit);
+
+  document.getElementById('btn-end-shift').addEventListener('click', () => {
+    if (S.gameOver) return;
+    endShift();
+  });
+
+  document.getElementById('btn-pay-loan').addEventListener('click', () => {
+    const val = parseFloat(document.getElementById('loan-payment-input').value);
+    if (!isNaN(val) && val > 0) payLoan(val);
+  });
+
+  document.getElementById('btn-pay-loan-all').addEventListener('click', () => {
+    payLoan(Math.max(0, S.cash - 10)); // keep $10 buffer
+  });
+
+  document.getElementById('btn-play-again').addEventListener('click', () => {
+    showScreen('screen-onboard');
+    document.getElementById('tos-check').checked = false;
+    document.getElementById('btn-start').disabled = true;
+  });
+});
+</script>
+</body>
+</html>
