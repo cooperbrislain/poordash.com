@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — PoorDash</title>
+  <meta name="description" content="PoorDash is satire. Here's the part that isn't.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:      #E8321A;
+      --red-dark: #C22A14;
+      --red-bg:   #FFF3F0;
+      --gold:     #C9A227;
+      --gold-bg:  #FBF6E9;
+      --text:     #1A1A1A;
+      --mid:      #555555;
+      --light:    #888888;
+      --rule:     #E8E8E8;
+      --bg:       #FFFFFF;
+      --bg-gray:  #F7F7F7;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    .chit-glyph {
+      display: inline-block;
+      width: 0.55em;
+      height: 0.85em;
+      vertical-align: -0.08em;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+    }
+
+    /* ─── Nav ─── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: white;
+      border-bottom: 1px solid var(--rule);
+      padding: 0 2rem;
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--red);
+      flex-shrink: 0;
+    }
+
+    .logo svg { width: 28px; height: 28px; }
+
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      flex: 1;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--mid);
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--text); font-weight: 600; }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-left: auto;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      border-radius: 500px;
+      transition: background 0.15s, transform 0.1s;
+    }
+
+    .btn:active { transform: scale(0.98); }
+
+    .btn-primary {
+      background: var(--red);
+      color: white;
+      font-size: 0.875rem;
+      padding: 0.55rem 1.25rem;
+    }
+
+    .btn-primary:hover { background: var(--red-dark); }
+
+    /* ─── Page layout ─── */
+    .page-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    /* ─── Hero ─── */
+    .about-hero {
+      margin-bottom: 3.5rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .about-eyebrow {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--red);
+      background: var(--red-bg);
+      padding: 0.3rem 0.75rem;
+      border-radius: 500px;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-hero h1 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+    }
+
+    .about-hero p {
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: var(--mid);
+      max-width: 640px;
+    }
+
+    /* ─── Sections ─── */
+    .about-section {
+      margin-bottom: 3.5rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .about-section:last-of-type {
+      border-bottom: none;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--light);
+      margin-bottom: 0.6rem;
+    }
+
+    .about-section h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .about-section p {
+      font-size: 0.975rem;
+      line-height: 1.8;
+      color: var(--mid);
+      margin-bottom: 1rem;
+    }
+
+    .about-section p:last-of-type {
+      margin-bottom: 0;
+    }
+
+    /* In-text callout quoting the satirical element */
+    .satire-callout {
+      background: var(--red-bg);
+      border-left: 3px solid var(--red);
+      padding: 1rem 1.25rem;
+      border-radius: 0 6px 6px 0;
+      margin: 1.25rem 0;
+      font-size: 0.875rem;
+      line-height: 1.65;
+      color: var(--text);
+    }
+
+    .satire-callout strong {
+      display: block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.35rem;
+    }
+
+    /* Sources list */
+    .sources {
+      margin-top: 1.25rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    .sources-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--light);
+      margin-bottom: 0.6rem;
+    }
+
+    .sources ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .sources li a {
+      font-size: 0.82rem;
+      color: var(--red);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-color: rgba(232,50,26,0.35);
+      transition: color 0.15s, text-decoration-color 0.15s;
+    }
+
+    .sources li a:hover {
+      color: var(--red-dark);
+      text-decoration-color: var(--red-dark);
+    }
+
+    .sources li .source-pub {
+      font-size: 0.75rem;
+      color: var(--light);
+      margin-left: 0.4rem;
+    }
+
+    /* ─── Closing ─── */
+    .about-closing {
+      background: var(--bg-gray);
+      border-radius: 12px;
+      padding: 2rem 2.25rem;
+      margin-top: 3rem;
+    }
+
+    .about-closing p {
+      font-size: 0.975rem;
+      line-height: 1.8;
+      color: var(--mid);
+      margin-bottom: 0.75rem;
+    }
+
+    .about-closing p:last-child { margin-bottom: 0; }
+
+    .about-closing a {
+      color: var(--red);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-color: rgba(232,50,26,0.4);
+    }
+
+    .about-closing a:hover { color: var(--red-dark); }
+
+    /* ─── Footer ─── */
+    footer { background: var(--text); color: rgba(255,255,255,0.5); }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 2rem;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 800;
+      font-size: 1rem;
+      color: white;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-logo svg { width: 22px; height: 22px; }
+    .footer-tagline { font-size: 0.8rem; max-width: 240px; line-height: 1.5; }
+
+    .footer-links { display: flex; gap: 4rem; flex-wrap: wrap; }
+
+    .footer-col-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-col a { display: block; font-size: 0.8rem; margin-bottom: 0.5rem; transition: color 0.15s; }
+    .footer-col a:hover { color: rgba(255,255,255,0.85); }
+
+    .footer-bottom { padding-top: 2rem; font-size: 0.72rem; line-height: 1.7; }
+    .footer-bottom strong { color: rgba(255,255,255,0.75); }
+
+    .footnote {
+      background: var(--bg-gray);
+      border-top: 1px solid var(--rule);
+      padding: 1.5rem 2rem;
+      font-size: 0.72rem;
+      color: var(--light);
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    .footnote a { color: var(--red); }
+
+    @media (max-width: 680px) {
+      .nav-links { display: none; }
+      .footer-top { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- SVG symbol defs -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="chit-glyph" viewBox="0 0 14 18">
+      <path d="M 11.24 4.76 A 6 6 0 1 0 11.24 13.24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="5" y1="1.5" x2="5" y2="16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="9" y1="1.5" x2="9" y2="16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="40" height="40" rx="10" fill="#E8321A"/>
+        <path d="M10 8h12c5.523 0 10 4.477 10 10s-4.477 10-10 10H18v4l-5-5 5-5v4h4a6 6 0 000-12H10V8z" fill="white"/>
+      </svg>
+      PoorDash
+    </a>
+    <div class="nav-links">
+      <a href="index.html#earn">Earn</a>
+      <a href="index.html#chitcoin">Chitcoin</a>
+      <a href="index.html#why">Why PoorDash</a>
+      <a href="about.html" class="active">About</a>
+    </div>
+    <div class="nav-actions">
+      <a href="index.html" class="btn btn-primary">Start Earning</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-inner">
+
+  <div class="about-hero">
+    <span class="about-eyebrow">Satire · Sources · Context</span>
+    <h1>This is a joke.<br>Here's the part that isn't.</h1>
+    <p>
+      PoorDash is satire. But most of what it depicts is either already happening,
+      has happened before, or is being seriously proposed in a pitch deck somewhere.
+      This page traces the real phenomena behind the bit — with sources,
+      because the absurdity is more disturbing when it's documented.
+    </p>
+  </div>
+
+  <!-- 1. Company Scrip -->
+  <div class="about-section">
+    <span class="section-label">Chitcoin</span>
+    <h2>Company scrip has been tried. It did not go well.</h2>
+    <p>
+      The 19th and early 20th centuries gave us the company town: a complete economic
+      ecosystem where a single employer controlled housing, food, and commerce.
+      Workers were often paid in scrip — proprietary tokens redeemable only at
+      company-owned stores. The result was a closed loop that made it structurally
+      difficult to quit, save, or build wealth outside the company's ecosystem.
+      Sound familiar?
+    </p>
+
+    <div class="satire-callout">
+      <strong>PoorDash parallel</strong>
+      Chitcoin (CHIT) earns at a nominal rate, but converts to BTC at near-zero value.
+      It trades at 4× face value — but only at participating merchants.
+      Withdrawal to USD is "pending regulatory approval."
+      CHIT balances expire after 180 days.
+      The economic incentives point in one direction: spend inside the ecosystem.
+    </div>
+
+    <p>
+      Pullman, Illinois — built by the railroad-car manufacturer George Pullman —
+      is the canonical American example. Workers lived in company housing, bought
+      from company stores, and were paid in wages that returned almost entirely to
+      Pullman's ledgers. The company maintained perfect circulation of its own capital.
+      This arrangement ended in a federal investigation after the Pullman Strike of 1894.
+      The Supreme Court ordered the town dissolved. The company store and scrip were
+      declared illegal by the federal government in 1938.
+    </p>
+    <p>
+      Gift card "breakage" — the portion of gift card value that is never redeemed —
+      generates billions in revenue annually for issuers. Loyalty points expire.
+      Platform credits expire. The playbook is old; the technology is new.
+    </p>
+
+    <div class="sources">
+      <div class="sources-label">Further reading</div>
+      <ul>
+        <li>
+          <a href="https://en.wikipedia.org/wiki/Company_scrip" target="_blank" rel="noopener">Company scrip — history and mechanics</a>
+          <span class="source-pub">Wikipedia</span>
+        </li>
+        <li>
+          <a href="https://www.nps.gov/articles/000/fact-or-fiction-did-pullman-use-scrip.htm" target="_blank" rel="noopener">Fact or Fiction: Did Pullman Use Scrip?</a>
+          <span class="source-pub">National Park Service</span>
+        </li>
+        <li>
+          <a href="https://blueridgetales.com/coal-scrip-in-appalachia-why-miners-fought-for-cash-wages/" target="_blank" rel="noopener">Coal Scrip in Appalachia: Why Miners Fought for Cash Wages</a>
+          <span class="source-pub">Blue Ridge Tales</span>
+        </li>
+        <li>
+          <a href="https://www.fool.com/investing/general/2003/12/17/slippage-breakage-float-and-bong.aspx" target="_blank" rel="noopener">Slippage, Breakage, Float, and Bong — how unredeemed value becomes profit</a>
+          <span class="source-pub">The Motley Fool</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 2. Crypto gig wages -->
+  <div class="about-section">
+    <span class="section-label">Crypto Payroll</span>
+    <h2>Paying gig workers in crypto is a real proposal.</h2>
+    <p>
+      In 2018, CNBC reported that some gig economy companies were exploring cryptocurrency
+      payroll as a competitive differentiator. By 2022, firms were publishing earnest white papers
+      about "stablecoins" as a mechanism to reduce friction in contractor payments —
+      framed as a benefit to workers, not a mechanism to create a closed financial ecosystem.
+    </p>
+
+    <div class="satire-callout">
+      <strong>PoorDash parallel</strong>
+      Chitcoin is framed as a feature. "Earn CHIT. Spend local. It just works."
+      The fact that CHIT cannot easily be converted to USD is presented as a stability
+      benefit, not a constraint. PoorDash sets all CHIT exchange rates unilaterally.
+    </div>
+
+    <p>
+      The appeal from a company's perspective is obvious: crypto payroll creates
+      float, reduces conversion costs, and — if the token is proprietary or partner-locked —
+      can route spending back into the platform ecosystem. The framing for workers
+      typically emphasizes speed and flexibility.
+    </p>
+
+    <div class="sources">
+      <div class="sources-label">Further reading</div>
+      <ul>
+        <li>
+          <a href="https://www.cnbc.com/2018/03/13/for-gig-workers-that-paycheck-could-be-in-cryptocurrency-sooner-than-later.html" target="_blank" rel="noopener">For Gig Workers, That Paycheck Could Be in Cryptocurrency Sooner Than Later</a>
+          <span class="source-pub">CNBC, 2018</span>
+        </li>
+        <li>
+          <a href="https://www.fisherphillips.com/en/news-insights/4-ways-that-stablecoins-provide-gig-economy-businesses-competitive-advantage-in-the-workplace.html" target="_blank" rel="noopener">4 Ways That Stablecoins Provide Gig Economy Businesses Competitive Advantage</a>
+          <span class="source-pub">Fisher Phillips (employer-side labor law firm)</span>
+        </li>
+        <li>
+          <a href="https://bakkt.com/blog/crypto-gig-economy-payments" target="_blank" rel="noopener">Crypto and the Gig Economy</a>
+          <span class="source-pub">Bakkt</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 3. Algorithmic management -->
+  <div class="about-section">
+    <span class="section-label">Algorithmic Management</span>
+    <h2>The algorithm sets the rate. The algorithm decides if you worked hard enough.</h2>
+    <p>
+      Modern gig platforms manage their workforce almost entirely through software —
+      dynamic pricing, acceptance rate thresholds, star ratings with opaque consequences,
+      and deactivation decisions made without human review. Workers often don't know
+      the rules they're being evaluated against, can't appeal decisions, and have no
+      recourse when the algorithm gets it wrong. This is sometimes called "algorithmic
+      wage theft" — not because a person is stealing, but because the system is
+      structured to extract maximum labor at minimum accountability.
+    </p>
+
+    <div class="satire-callout">
+      <strong>PoorDash parallel</strong>
+      CHIT bonuses are "awarded at PoorDash's discretion." Ratings are visible
+      but not explained. The "Hunger Performance Correlation" footnote notes that
+      contractors who skip meals have higher acceptance rates.
+      We present this as information, not guidance.
+    </div>
+
+    <p>
+      A 2025 Human Rights Watch report documented how gig platforms use algorithmic
+      tools to systematically understate earnings, obscure fee structures, and
+      manage workers in ways that would trigger labor protections if the relationship
+      were classified as employment. The opacity is a feature of the system, not a bug.
+    </p>
+
+    <div class="sources">
+      <div class="sources-label">Further reading</div>
+      <ul>
+        <li>
+          <a href="https://www.hrw.org/report/2025/05/12/the-gig-trap/algorithmic-wage-and-labor-exploitation-in-platform-work-in-the-us" target="_blank" rel="noopener">The Gig Trap: Algorithmic Wage and Labor Exploitation in Platform Work in the US</a>
+          <span class="source-pub">Human Rights Watch, May 2025</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 4. Worker misclassification -->
+  <div class="about-section">
+    <span class="section-label">Worker Classification</span>
+    <h2>"Independent contractor" is a legal category that companies spent $200M to protect.</h2>
+    <p>
+      In 2020, California passed AB5, a law that would have required gig companies to
+      classify most gig workers as employees — making them eligible for minimum wage,
+      benefits, and labor protections. DoorDash, Uber, Lyft, and Instacart collectively
+      spent over $200 million on Proposition 22, a ballot initiative that carved out
+      an exemption specifically for app-based delivery and rideshare workers.
+      It passed. It was later partially struck down as unconstitutional.
+      The legal fight continues.
+    </p>
+
+    <div class="satire-callout">
+      <strong>PoorDash parallel</strong>
+      The "How It Works" section includes an address field with "(if applicable)"
+      in small print. The Contractor Agreement exists. The contractor is, definitionally,
+      not an employee. These are choices.
+    </div>
+
+    <p>
+      The classification distinction isn't semantic. Employees get minimum wage,
+      overtime, workers' comp, employer-paid payroll taxes, and the right to organize.
+      Independent contractors get none of that. The "flexibility" framing — you set
+      your own hours! — is accurate in one direction and silent about the rest.
+    </p>
+
+    <div class="sources">
+      <div class="sources-label">Further reading</div>
+      <ul>
+        <li>
+          <a href="https://calmatters.org/economy/2024/07/prop-22-california-gig-work-law-upheld/" target="_blank" rel="noopener">California gig work law upheld — Prop 22's legal saga</a>
+          <span class="source-pub">CalMatters, 2024</span>
+        </li>
+        <li>
+          <a href="https://www.culsr.org/articles/the-catch-22-of-prop-22-examining-californias-classification-of-gig-economy-workers" target="_blank" rel="noopener">The Catch-22 of Prop 22: Examining California's Classification of Gig Economy Workers</a>
+          <span class="source-pub">Cornell University Labor and Employment Law Review</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 5. Vehicle dwelling -->
+  <div class="about-section">
+    <span class="section-label">Housing Instability</span>
+    <h2>Vehicle-dwelling gig workers aren't a punchline. They're a documented phenomenon.</h2>
+    <p>
+      Multiple investigations have found gig workers — including DoorDash and Uber Eats
+      drivers — living in their vehicles while maintaining active accounts with high ratings.
+      The economics are tight enough that housing instability is a real outcome, not
+      a fringe case. Some workers report that delivering while unhoused actually
+      improves their metrics: no commute, always available, no reason not to accept.
+    </p>
+
+    <div class="satire-callout">
+      <strong>PoorDash parallel</strong>
+      The "Vehicle-Based Contractor Program" is a featured callout with a red
+      left-border and the label "Featured Program." It offers flexible options
+      for dashers "living in their vehicles." Contractor perks include
+      restroom access (12-hour qualifying window), gym access (30 min, towels not included),
+      device charging, mail forwarding, and climate access (45 min, proof of active dash required).
+      Every perk costs PoorDash nothing. They are access to other people's facilities.
+    </div>
+
+    <p>
+      The vehicle dwelling section is the sharpest part of the satire, which means
+      it's the part closest to the reporting. The perks list — restrooms, device charging,
+      a mailing address — are not invented. They are the actual practical problems
+      that come up when you live in a car and depend on a phone and an app for income.
+    </p>
+  </div>
+
+  <!-- 6. Platform capitalism broader -->
+  <div class="about-section">
+    <span class="section-label">Platform Capitalism</span>
+    <h2>The platform owns the rails. The contractor owns the risk.</h2>
+    <p>
+      Platform capitalism describes a business model in which a company owns the
+      matching infrastructure — the app, the algorithm, the customer relationship —
+      while externalizing the costs of labor, equipment, insurance, and risk onto
+      contractors. The platform captures a percentage of every transaction.
+      Surge pricing and dynamic pricing mean the platform adjusts rates in real time
+      in response to supply and demand, while contractors bear fixed costs regardless.
+    </p>
+
+    <div class="satire-callout">
+      <strong>PoorDash parallel</strong>
+      PoorDash earns on every order. CHIT rates are set unilaterally and can be
+      modified or discontinued at any time. The contractor provides the vehicle,
+      fuel, insurance, and time. PoorDash provides the app.
+      The contractor agreement is binding arbitration.
+    </div>
+
+    <p>
+      The gap between what a customer pays and what a worker earns is not just a
+      margin — it is the product. The platform is not a middleman that earns a
+      small fee for connecting parties efficiently. It is a monopoly intermediary
+      that earns rent on every interaction it controls.
+    </p>
+
+    <div class="sources">
+      <div class="sources-label">Further reading</div>
+      <ul>
+        <li>
+          <a href="https://www.hrw.org/report/2025/05/12/the-gig-trap/algorithmic-wage-and-labor-exploitation-in-platform-work-in-the-us" target="_blank" rel="noopener">The Gig Trap — HRW comprehensive report on US platform work</a>
+          <span class="source-pub">Human Rights Watch, May 2025</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Closing -->
+  <div class="about-closing">
+    <p>
+      PoorDash started as a domain I registered when the gig economy was new and
+      the whole thing felt like an obvious joke. I sat on it for over a decade.
+    </p>
+    <p>
+      The problem with satire is that reality doesn't wait. By the time I got around
+      to building anything, the dystopian version I'd imagined had become a pitch deck,
+      then a unicorn, then just Tuesday. Hard to parody something that's already
+      parodying itself.
+    </p>
+    <p>
+      The gap between this landing page and an actual Series A deck is smaller than
+      I'm comfortable with. Which is why I built it.
+    </p>
+    <p>
+      — <a href="mailto:cbrislain@gmail.com">Say hello</a> if this resonated,
+      or if you want to talk about what I'm actually building.
+    </p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="40" height="40" rx="10" fill="#E8321A"/>
+            <path d="M10 8h12c5.523 0 10 4.477 10 10s-4.477 10-10 10H18v4l-5-5 5-5v4h4a6 6 0 000-12H10V8z" fill="white"/>
+          </svg>
+          PoorDash
+        </div>
+        <div class="footer-tagline">Connecting people who need work done with people who need to eat.</div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <div class="footer-col-title">Earn</div>
+          <a href="index.html#earn">Become a Contractor</a>
+          <a href="index.html#chitcoin">CHIT Wallet FAQ</a>
+          <a href="#">Earnings Calculator*</a>
+          <a href="#">Contractor Agreement</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Chitcoin</div>
+          <a href="index.html#chitcoin">What Is CHIT?</a>
+          <a href="#">CHIT Wallet Terms</a>
+          <a href="#">Participating Merchants</a>
+          <a href="#">CHIT Spread Disclosure</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Company</div>
+          <a href="about.html">About</a>
+          <a href="mailto:cbrislain@gmail.com">Contact</a>
+          <a href="#">Legal</a>
+          <a href="#">Arbitration Agreement</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <strong>This website is a work of satire.</strong> It is not a real business and does not offer commercial services or financial instruments. Chitcoin (CHIT) is fictional and does not exist. If it did exist, it would not be a security, currency, or investment. FuelMart™ is also fictional. If you are trying to order real food or earn real money, you may want to try a different app.
+    </div>
+  </div>
+</footer>
+
+<div class="footnote">
+  <a href="mailto:cbrislain@gmail.com">Interested in this project? Say hello.</a>
+</div>
+
+</body>
+</html>
